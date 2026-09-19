@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./DEDB  # Change this if your subfolder has a different name!
 
     steps:
       - name: Checkout
@@ -47,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./DEDB/out  # Change this to ./YOUR_FOLDER_NAME/out if needed
+          path: ./out
 
   deploy:
     environment:
