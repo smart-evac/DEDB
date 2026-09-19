@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700;900&display=swap');
+
+/* ============================================================
+   DEDB — Dynamic Evacuation Decision Board Design System
+   All colors MUST be HSL.
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Core surfaces */
+    --background: 220 25% 6%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 22% 10%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 22% 10%;
+    --popover-foreground: 210 20% 92%;
+
+    /* Brand: emergency amber */
+    --primary: 38 95% 55%;
+    --primary-foreground: 220 25% 6%;
+
+    --secondary: 220 18% 16%;
+    --secondary-foreground: 210 20% 80%;
+
+    --muted: 220 18% 14%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 38 95% 55%;
+    --accent-foreground: 220 25% 6%;
+
+    --destructive: 0 85% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 18% 18%;
+    --input: 220 18% 18%;
+    --ring: 38 95% 55%;
+
+    --radius: 0.4rem;
+
+    /* Emergency status colors */
+    --safe: 142 72% 42%;
+    --safe-foreground: 0 0% 100%;
+    --safe-glow: 142 72% 42%;
+
+    --caution: 45 95% 52%;
+    --caution-foreground: 220 25% 6%;
+    --caution-glow: 45 95% 52%;
+
+    --danger: 0 85% 55%;
+    --danger-foreground: 0 0% 100%;
+    --danger-glow: 0 85% 55%;
+
+    --smoke: 30 60% 50%;
+    --flood: 200 80% 45%;
+    --gas: 80 70% 45%;
+
+    /* Gradients */
+    --gradient-header: linear-gradient(
+      135deg,
+      hsl(220 25% 8%),
+      hsl(220 30% 12%)
+    );
+
+    --gradient-danger: linear-gradient(
+      135deg,
+      hsl(0 85% 20%),
+      hsl(0 85% 30%)
+    );
+
+    --gradient-safe: linear-gradient(
+      135deg,
+      hsl(142 50% 12%),
+      hsl(142 50% 18%)
+    );
+
+    --gradient-card: linear-gradient(
+      145deg,
+      hsl(220 22% 11%),
+      hsl(220 20% 9%)
+    );
+
+    /* Shadows & Glows */
+    --shadow-card: 0 4px 24px hsl(220 25% 3% / 0.8);
+
+    --glow-safe: 0 0 20px hsl(142 72% 42% / 0.4);
+
+    --glow-danger: 0 0 20px hsl(0 85% 55% / 0.5);
+
+    --glow-caution: 0 0 20px hsl(45 95% 52% / 0.4);
+
+    --glow-primary: 0 0 24px hsl(38 95% 55% / 0.35);
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 210 20% 80%;
+    --sidebar-primary: 38 95% 55%;
+    --sidebar-primary-foreground: 220 25% 6%;
+    --sidebar-accent: 220 18% 14%;
+    --sidebar-accent-foreground: 210 20% 80%;
+    --sidebar-border: 220 18% 16%;
+    --sidebar-ring: 38 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Exo 2', sans-serif;
+  }
+
+  .font-mono-tech {
+    font-family: 'Share Tech Mono', monospace;
+  }
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+
+@keyframes pulse-danger {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: var(--glow-danger);
+  }
+
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 40px hsl(0 85% 55% / 0.8);
+  }
+}
+
+@keyframes pulse-safe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes arrow-march {
+  0% {
+    stroke-dashoffset: 60;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes blink-alert {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes float-badge {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-pulse-danger {
+  animation: pulse-danger 1.4s ease-in-out infinite;
+}
+
+.animate-pulse-safe {
+  animation: pulse-safe 2s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink-alert 0.9s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.35s ease-out both;
+}
+
+.animate-float {
+  animation: float-badge 3s ease-in-out infinite;
+}
+
+.arrow-animated {
+  stroke-dasharray: 20 8;
+  animation: arrow-march 0.6s linear infinite;
+}
+
+/* Scanline overlay effect */
+
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    hsl(220 25% 6% / 0.05) 2px,
+    hsl(220 25% 6% / 0.05) 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Zone status classes */
+
+.zone-safe {
+  background: linear-gradient(
+    135deg,
+    hsl(142 50% 12%),
+    hsl(142 50% 16%)
+  );
+  border-color: hsl(var(--safe));
+  box-shadow: inset 0 0 20px hsl(142 72% 42% / 0.15);
+}
+
+.zone-caution {
+  background: linear-gradient(
+    135deg,
+    hsl(45 70% 12%),
+    hsl(45 70% 16%)
+  );
+  border-color: hsl(var(--caution));
+  box-shadow: inset 0 0 20px hsl(45 95% 52% / 0.15);
+}
+
+.zone-danger {
+  background: linear-gradient(
+    135deg,
+    hsl(0 70% 12%),
+    hsl(0 70% 16%)
+  );
+  border-color: hsl(var(--danger));
+  box-shadow: inset 0 0 20px hsl(0 85% 55% / 0.2);
+  animation: pulse-danger 1.4s ease-in-out infinite;
+}
